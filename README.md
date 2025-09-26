@@ -1,0 +1,3 @@
+# CS:GO Cases Simulator
+
+This project about csgo cases, where you can open casees, upgrade, sell ...
