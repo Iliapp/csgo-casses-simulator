@@ -1,4 +1,4 @@
-// @ts-ignore
+// @ts-ignore server start
 import express from "express";
 
 const app = express();
