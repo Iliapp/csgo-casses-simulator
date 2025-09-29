@@ -25,6 +25,6 @@ Frontend → React (with TypeScript) + Tailwind CSS for UI and animations
 
 
 ## Branches
-- main
-- develop
-- feature/project-setup
+- main (use when complete and everything is working)
+- develop (when add something and it's work)
+- feature/project-setup(add everything)
