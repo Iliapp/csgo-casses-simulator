@@ -25,7 +25,7 @@ Frontend → React (with TypeScript) + Tailwind CSS for UI and animations
 
 
 ## Branches
-- main (use when complete and everything is working)
+- main 
 
 [//]: # (- develop &#40;when add something and it's work&#41;)
 
@@ -53,4 +53,9 @@ docker-compose up --build
 
 ```
 docker-compose down
+
 ```
+
+
+
+##
