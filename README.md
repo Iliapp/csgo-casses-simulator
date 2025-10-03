@@ -32,7 +32,7 @@ Frontend → React (with TypeScript) + Tailwind CSS for UI and animations
 [//]: # (- feature/project-setup&#40;add everything&#41;)
 
 
-## Docker
+## Docker and migration
 
 #### Link
 
@@ -55,7 +55,13 @@ docker-compose up --build
 docker-compose down
 
 ```
+#### Migration
+- add drop table
+- add create users
+- add create items
+- add create cases
+- add create case_items
+- add create openings
+- add create transactions_type
 
 
-
-##
