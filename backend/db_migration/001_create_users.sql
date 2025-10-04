@@ -4,6 +4,6 @@ CREATE TABLE users (
                        password_hash TEXT NOT NULL,
                        display_name TEXT,
                        balance NUMERIC(12,2) DEFAULT 0,
-                       created_at TIMESTAMP DEFAULT  NOW(),
+                       created_at TIMESTAMP DEFAULT  NOW() NOT NULL ,
                        role TEXT DEFAULT 'user'
 );
