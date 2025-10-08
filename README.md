@@ -7,7 +7,7 @@ with a full-fledged frontend, backend, database, accounting system, random rewar
 
 
 ## How to run 
-- 
+- SOON 
 
 
 
@@ -25,7 +25,7 @@ Frontend → React (with TypeScript) + Tailwind CSS for UI and animations
 
 
 ## Branches
-- main 
+- main(i guess for solo working one branch may be good)
 
 [//]: # (- develop &#40;when add something and it's work&#41;)
 
