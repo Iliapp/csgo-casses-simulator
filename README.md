@@ -7,7 +7,8 @@ with a full-fledged frontend, backend, database, accounting system, random rewar
 
 
 ## How to run 
-- SOON 
+- SOON will be all
+- 
 
 
 
