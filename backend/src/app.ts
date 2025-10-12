@@ -1,6 +1,6 @@
 import express from "express";
-import {config} from "config";
-import Controller from "/controllers"
+import {config} from "./config.js";
+import Controller from "./controllers"
 import bodyParser from "body-parser";
 import cors from 'cors'
 
@@ -8,7 +8,7 @@ import cors from 'cors'
 class App {
     private app: express.Application;
 
-    constructor(controller: Controller[]) {
+    constructor(controllers: Controller[]) {
         this.app = express();
 
         this.initializeMiddlewares();
