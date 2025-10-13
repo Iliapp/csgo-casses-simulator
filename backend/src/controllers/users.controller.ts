@@ -1,4 +1,4 @@
-import {Request, Response, Router} from "express";
+import {Request, response, Response, Router} from "express";
 import {config} from '../config.js';
 import Controller
 import DatabaseService from "../ services/database.service.js";
@@ -33,6 +33,37 @@ class UsersController implements Controller {
         //
         // this.router.delete(`${this.path}/delete_user`, adminMiddleware, this.delete_user.bind(this));
     }
+
+
+    private async authenticate(request: Request, response: Response) {
+        conts { login, password } = request.body;
+    }
+
+    if(!login, password) {
+         return response.status(400).json({ error: "Login and password are required." });
+
+    try {
+        await this.dbService.connect();
+        const user = await this.dbService.getUserByLogin(login);
+
+        if(!user) {
+    return response.status(404).json({ error: "User not found." });
+    }
+    const passwordMatch = await this.passwordService.comparePassword(password, user.password);
+
+        if(!passwordMatch) {
+            return response.status(401).json({ error: "nvalid credentials." });
+        }
+
+    response.status(200).json({ token: this.jwtService.generateToken(login) });
+
+    } catch (eror){
+    response.status(500).json({ error: "Error during authentication." });
+        }
+    }
+
+
+
 
 
 }
