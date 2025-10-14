@@ -7,7 +7,8 @@ with a full-fledged frontend, backend, database, accounting system, random rewar
 
 
 ## How to run 
-- SOON will be all
+- SOON will be all..
+- 
 - 
 
 
@@ -64,7 +65,7 @@ docker-compose down
 - add create case_items
 - add create openings
 - add create transactions_type
-
+...
 
 
 
