@@ -1,12 +1,10 @@
 import {Request, response, Response, Router} from "express";
 import {config} from '../config.js';
-// import Controllers
 import DatabaseService from "../ services/database.service.js";
-// import login
-// import JwtService from '../utils/jwt.js'
 
 
-class UsersController implements Controller {
+
+class UsersController implements controller {
     public path = '/api/user';
     public router = Router();
     private dbService: DatabaseService = new DatabaseService();
