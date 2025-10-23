@@ -1,4 +1,5 @@
-# CS:GO Cases Simulator
+# CS:GO Cases Simulator - casino
+
 
 This project about csgo cases, where you can open casees, upgrade, sell, talk with other user, make upgrade, sell items or get in steam(but it will be in future if project be good) 
 with a full-fledged frontend, backend, database, accounting system, random reward logic (RNG), UI animations, and admin panel.
@@ -71,6 +72,6 @@ docker-compose down
 
 
 
-[//]: # (# HAPPY BIRTHDAY ME)  
+SOON MORE
 
 
