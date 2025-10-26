@@ -17,7 +17,11 @@ export class AuthService {
         }
         const foundUser = user.rows[0];
 
-// Soon make check password через bcrypt і генерація JWT
+        if (foundUser.password != password) {
+            throw new Error("Passwords do not match");
+        }
+
+        const { password: _, ...result } = foundUser;
         return result;
     }
 }

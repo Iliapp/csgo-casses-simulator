@@ -26,8 +26,18 @@ class DatabaseService {
         this.pool.on('error', (err) => {
             console.error("Fail connect",err);
             process.exit(1);
-        })
+        });
 
+    }
+
+    async query(text: string, params?: any[]): Promise<any> {
+        try {
+            const res = await this.pool.query(text,params)
+            return res
+        } catch(err) {
+            console.error("Fail query",err);
+            throw err;
+        }
     }
 
 }
