@@ -30,9 +30,9 @@ Frontend → React (with TypeScript) + Tailwind CSS for UI and animations
 ## Branches
 - main(i guess for solo working one branch may be good)
 
-[//]: # (- develop &#40;when add something and it's work&#41;)
+- develop (when add something and it's work)
 
-[//]: # (- feature/project-setup&#40;add everything&#41;)
+- feature/project-setup(add everything)
 
 
 ## Docker and migration
@@ -73,5 +73,7 @@ docker-compose down
 
 
 SOON MORE
+
+Create by Ilia 
 
 
