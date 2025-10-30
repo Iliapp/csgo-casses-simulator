@@ -43,23 +43,30 @@ export class AuthService {
 
 
 
-    async signIn(email: string, password: string): Promise<any> {
-        const user = await this.authService.query(
+    async signIn(email: string, password: string) {
+        const result = await this.db.query(
             "SELECT * FROM users WHERE email = $1",
             [email]
         );
-        if (user.rowCount === 0) {
+
+        if (result.rowCount === 0) {
             throw new Error("User not found");
         }
-        const foundUser = user.rows[0];
 
-        if (foundUser.password != password) {
+        const user = result.rows[0];
+
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
             throw new Error("Passwords do not match");
         }
 
-        const {password: _, ...result} = foundUser;
-        return result;
+        const token = this.jwt.generateToken(user.email);
+
+        const { password: _, ...userData } = user;
+        return { ...userData, token };
     }
+
+
 
 
 
