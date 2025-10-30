@@ -1,18 +1,22 @@
 import DatabaseService from "./database.service.js";
-import jwt from "jsonwebtoken";
-import {config} from "../config.js"
+// import jwt from "jsonwebtoken";
+// import {config} from "../config.js"
+import bcrypt from "bcryptjs";
+import JwtService from "./jwt.service.js";
 
 
 
 export class AuthService {
-    private authService: DatabaseService;
+    private db: DatabaseService;
+    private jwt: JwtService;
 
     constructor() {
-        this.authService = new DatabaseService();
+        this.db = new DatabaseService();
+        this.jwt = new JwtService();
     }
 
     async singUp(email: string, password: string, name: string) {
-        const existUser = await this.authService.query(
+        const existUser = await this.db.query(
             "SELECT * FROM users WHERE email = $1",
             [email]
         );
@@ -20,12 +24,21 @@ export class AuthService {
             throw new Error("User already exists");
         }
 
-        const newUser = await this.authService.query(
-            "INSERT INTO users (email, password, name, balance, role, created_at) VALUES ($1, $2, $3, $4, $5, NOW()) RETURNING *",
-            [email, password, name, 0, "user"]
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        const newUser = await this.db.query(
+            `INSERT INTO users (email, password, name, balance, role, created_at)
+                   VALUES ($1, $2, $3, $4, $5, NOW())
+                   RETURNING id, email, name, balance, role, created_at`,
+            [email, hashedPassword, name, 0, "user"]
         );
-        const { password: _, ...userData } = newUser.rows[0];
-        return { userData };
+
+        const user = newUser.rows[0];
+
+
+        const token = this.jwt.generateToken(user.email);
+
+        return { ...user, token };
     }
 
 
