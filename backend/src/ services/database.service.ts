@@ -8,7 +8,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 class DatabaseService {
-    private pool: Pool;
+    pool: Pool;
 
     constructor() {
         this.pool = new Pool({
