@@ -69,6 +69,22 @@ export class AuthService {
         const { password: _, ...userData } = result.rows[0];
         return userData;
     }
+
+
+    async resetPassword(email: string, newPassword: string): Promise<string> {
+        const result = await this.db.query("SELECT * FROM users WHERE email = $1", [email]);
+        if (result.rowCount === 0) throw new Error("User not found");
+
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+        await this.db.query("UPDATE users SET password = $1 WHERE email = $2", [hashedPassword, email]);
+
+        return "Password successfully updated";
+    }
+
+
+
+
 }
 
+// @ts-ignore
 export default AuthService;
