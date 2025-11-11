@@ -44,6 +44,28 @@ export class UserService {
 
     }
 
+        async updateUserPassword(login: string, oldPasswordInput: string, newPassword:string): Promise<void> {
+            const user = await this.db.getUserByEmail(login);
+            if (!user) {
+                throw new Error("User with email ${login} not found");
+            }
+
+            const isMatch = await bcrypt.compareSync(oldPasswordInput, user.password_hash);
+            if (!isMatch) {
+                throw new Error("Current password is incorrect");
+            }
+
+            const hashedPassword = await bcrypt.hash(newPassword, 12);
+            await this.db.updateUserPassword(login, hashedPassword);
+
+
+
+
+
+
+
+
+    }
 
 
 
