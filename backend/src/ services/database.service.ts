@@ -89,7 +89,19 @@ class DatabaseService {
         await this.pool.query(query, [newRole, id]);
     }
 
+    public async deleteUser(id:number): Promise<void> {
+        const checkQuery = `SELECT 1 FROM users WHERE id = $1 LIMIT 1`;
+        const res = await this.pool.query(checkQuery, [id]);
+        const exist = res.rows.length > 0;
 
+        if (exist) {
+            const query = `DELETE FROM users WHERE id = $1 `;
+            await this.pool.query(query, [id]);
+            console.log(`'deleted user',${id}`);
+        } else {
+            console.error("Fail deleteUser",);
+        }
+    }
 
 }
 
