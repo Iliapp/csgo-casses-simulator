@@ -40,6 +40,19 @@ class DatabaseService {
         }
     }
 
+    public async getUserByEmail(email: string): Promise<any | null> {
+        const query = `SELECT * FROM users WHERE email = $1`;
+        const res = await this.pool.query(query, [email]);
+
+
+        if (res.rows.length > 0) {
+            return res.rows[0];
+
+        }
+        return null
+    }
+
+
 }
 
 
