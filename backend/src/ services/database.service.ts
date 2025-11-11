@@ -62,6 +62,35 @@ class DatabaseService {
         }
         return [];
     }
+
+    public async updateUserPassword(login: string, newHashedPassword: string): Promise<void> {
+        const query = `UPDATE users SET password_hash = $1 WHERE display_name = $2 `;
+        await this.pool.query(query, [newHashedPassword, login]);
+
+    }
+
+    // public async updateUserPrivacy(login: string, isPrivate: string): Promise<void> {
+    //     const query = `UPDATE users SET `
+    // } це не розумію як робити з моїми методами
+
+    public async UpdateUserDisplayName(newName: string, id: number): Promise<void> {
+        const query = `UPDATE users SET display_name = $1 WHERE id = $2 `;
+        await this.pool.query(query, [newName, id]);
+    }
+
+    public async updateUserBalance(newBalance: number, id: number): Promise<void> {
+        const query = `UPDATE users SET balance = $1 WHERE id = $2 `;
+        await this.pool.query(query, [newBalance,id]);
+
+    }
+
+    public async updateRole(newRole:string, id:number): Promise<void> {
+        const query = `UPDATE users SET role = $1 WHERE id = $2 `;
+        await this.pool.query(query, [newRole, id]);
+    }
+
+
+
 }
 
 
