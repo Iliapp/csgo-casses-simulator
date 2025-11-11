@@ -24,6 +24,25 @@ export class UserService {
 
     }
 
+    async getUserByEmail(email: string) {
+        const user = await this.db.getUserByEmail(email);
+
+        if (!user) {
+            throw new Error(`User with email ${email} not found`);
+        }
+
+        return {
+            id: user.id,
+            email: user.email,
+            display_name: user.display_name,
+            balance: user.balance,
+            created_at: user.created_at,
+            role: user.role
+        };
+
+
+
+    }
 
 
 
