@@ -52,7 +52,16 @@ class DatabaseService {
         return null
     }
 
+    public async getAllUsers(): Promise<any> {
+        const query = `SELECT * FROM users`;
+        const res = await this.pool.query(query);
 
+
+        if (res.rows.length > 0) {
+            return res.rows;
+        }
+        return [];
+    }
 }
 
 
