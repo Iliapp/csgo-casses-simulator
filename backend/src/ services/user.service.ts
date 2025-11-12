@@ -2,6 +2,9 @@ import DatabaseService  from "./database.service.js";
 import bcrypt from "bcryptjs";
 
 
+// interface User {
+//    do robić
+// }
 
 
 
@@ -11,6 +14,8 @@ export class UserService {
     constructor(db: DatabaseService) {
         this.db = db;
     }
+
+
 
 
 
@@ -58,14 +63,9 @@ export class UserService {
             const hashedPassword = await bcrypt.hash(newPassword, 12);
             await this.db.updateUserPassword(login, hashedPassword);
 
-
-
-
-
-
-
-
     }
+
+
 
 
 
