@@ -65,7 +65,17 @@ export class UserService {
 
     }
 
+    async UpdateUserDisplayName(login: string, name: string): Promise<void> {
+        const user = await this.db.getUserByEmail(login);
+        if (!user) {
+            throw new Error("User with email ${login} not found");
+        }
 
+        if (!name) {
+            // make later
+        }
+
+    }
 
 
 
