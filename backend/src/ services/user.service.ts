@@ -2,9 +2,17 @@ import DatabaseService  from "./database.service.js";
 import bcrypt from "bcryptjs";
 
 
-// interface User {
-//    do robić
-// }
+interface User {
+   id: number;
+   email: string;
+   password_hash: string;
+   display_name: string;
+   balance: number;
+   created_at: Date;
+   role: string;
+
+
+}
 
 
 
@@ -65,17 +73,6 @@ export class UserService {
 
     }
 
-    async UpdateUserDisplayName(login: string, name: string): Promise<void> {
-        const user = await this.db.getUserByEmail(login);
-        if (!user) {
-            throw new Error("User with email ${login} not found");
-        }
-
-        if (!name) {
-            // make later
-        }
-
-    }
 
 
 
