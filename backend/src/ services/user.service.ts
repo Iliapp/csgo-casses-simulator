@@ -73,6 +73,31 @@ export class UserService {
 
     }
 
+    async UpdateUserDisplayName(login: string, name: string): Promise<void> {
+        const user = await this.db.getUserByEmail(login);
+        if (!user) {
+            throw new Error("User with email ${login} not found");
+        }
+
+        if (!name || name.trim().length === 0) {
+            throw new Error("Display name cannot be empty");
+        }
+
+        if (name.length < 3 || name.length > 20)  {
+            throw new Error("Display name must be between 3 and 20 characters");
+
+        }
+
+        const validNameRegex = /^[a-zA-Zа-яА-Я0-9 _]+$/;
+        if (!validNameRegex.test(name)) {
+            throw new Error("Display name contains invalid characters");
+        }
+
+
+        await this.db.UpdateUserDisplayName(user.id, name)
+
+
+    }
 
 
 
