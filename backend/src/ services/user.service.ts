@@ -60,10 +60,10 @@ export class UserService {
         async updateUserPassword(login: string, oldPasswordInput: string, newPassword:string): Promise<void> {
             const user = await this.db.getUserByEmail(login);
             if (!user) {
-                throw new Error("User with email ${login} not found");
+                throw new Error(`User with email ${login} not found`);
             }
 
-            const isMatch = await bcrypt.compareSync(oldPasswordInput, user.password_hash);
+            const isMatch = await bcrypt.compare(oldPasswordInput, user.password_hash);
             if (!isMatch) {
                 throw new Error("Current password is incorrect");
             }
@@ -73,31 +73,44 @@ export class UserService {
 
     }
 
-    async UpdateUserDisplayName(login: string, name: string): Promise<void> {
+        async UpdateUserDisplayName(login: string, name: string): Promise<void> {
+            const user = await this.db.getUserByEmail(login);
+            if (!user) {
+                throw new Error("User with email ${login} not found");
+            }
+
+            if (!name || name.trim().length === 0) {
+                throw new Error("Display name cannot be empty");
+            }
+
+            if (name.length < 3 || name.length > 20)  {
+                throw new Error("Display name must be between 3 and 20 characters");
+
+            }
+
+            const validNameRegex = /^[a-zA-Zа-яА-Я0-9 _]+$/;
+            if (!validNameRegex.test(name)) {
+                throw new Error("Display name contains invalid characters");
+            }
+
+
+            await this.db.UpdateUserDisplayName(name, user.id);
+
+        }
+
+        async updateUserBalance(login: string, balance: number): Promise<void> {
         const user = await this.db.getUserByEmail(login);
         if (!user) {
-            throw new Error("User with email ${login} not found");
+            throw new Error(`User with email ${login} not found`);
+        }
+        if (balance < 0) {
+            throw new Error("Balance cannot be negative");
         }
 
-        if (!name || name.trim().length === 0) {
-            throw new Error("Display name cannot be empty");
-        }
+            await this.db.updateUserBalance(balance,user.id);
 
-        if (name.length < 3 || name.length > 20)  {
-            throw new Error("Display name must be between 3 and 20 characters");
 
         }
-
-        const validNameRegex = /^[a-zA-Zа-яА-Я0-9 _]+$/;
-        if (!validNameRegex.test(name)) {
-            throw new Error("Display name contains invalid characters");
-        }
-
-
-        await this.db.UpdateUserDisplayName(user.id, name)
-
-
-    }
 
 
 

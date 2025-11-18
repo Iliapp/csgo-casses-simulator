@@ -73,7 +73,7 @@ class DatabaseService {
     //     const query = `UPDATE users SET `
     // } це не розумію як робити з моїми методами
 
-    public async UpdateUserDisplayName(newName: string, id: number): Promise<void> {
+    public async UpdateUserDisplayName(newName: string, id: string): Promise<void> {
         const query = `UPDATE users SET display_name = $1 WHERE id = $2 `;
         await this.pool.query(query, [newName, id]);
     }
