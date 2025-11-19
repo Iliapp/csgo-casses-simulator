@@ -112,6 +112,14 @@ export class UserService {
 
         }
 
+        async updateUserRole(login: string, role: string): Promise<void> {
+        const user = await this.db.getUserByEmail(login);
+        if(!user) {
+            throw new Error(`User with email ${login} not found`);
+        }
+        await this.db.updateRole(role, user.id);
+        }
+
 
 
 
