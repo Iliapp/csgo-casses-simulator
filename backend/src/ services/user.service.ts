@@ -120,7 +120,15 @@ export class UserService {
         await this.db.updateRole(role, user.id);
         }
 
+    async deleteUser(deluser: string): Promise<void> {
+        const user = await this.db.getUserByEmail(deluser)
 
+        if (!user) {
+            throw new Error(`User with email ${deluser} not found`);
+        }
+        await this.db.deleteUser(user.id);
+
+    }
 
 
 
