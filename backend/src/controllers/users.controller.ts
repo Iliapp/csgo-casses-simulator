@@ -21,4 +21,15 @@ export class UserController {
 
     }
 
+    // @ts-ignore
+    async getUserByEmail(request: Request, response: Response): Promise<Response> {
+        try {
+            const email = request.params.email;
+            const user = await this.userService.getUserByEmail(email);
+            response.json(user);
+        } catch (error:any) {
+            response.status(400).json({error: error.message});
+        }
+    }
+
 }
