@@ -9,4 +9,16 @@ export class UserController {
         this.userService = userService
     }
 
+    // @ts-ignore
+    async getAllUsers(request: Request, response: Response): Promise<Response> {
+        try {
+            const res = await this.userService.getAllUsers();
+            response.json(res);
+
+        } catch (error:any) {
+            response.status(400).json({error: error.message});
+        }
+
+    }
+
 }
