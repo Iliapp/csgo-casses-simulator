@@ -57,6 +57,15 @@ export class UserService {
 
     }
 
+    async createUser(email: string, password: string, display_name: string, role: string, balance: number): Promise<void> {
+        const user = await this.db.getUserByEmail(email);
+        if (user) {
+            throw new Error(`User with email ${email} exists`);
+        }
+        const hashPassword = await bcrypt.hash(password, 12);
+        await this.db.createUser(email, hashPassword, display_name, role, balance);
+    }
+
         async updateUserPassword(login: string, oldPasswordInput: string, newPassword:string): Promise<void> {
             const user = await this.db.getUserByEmail(login);
             if (!user) {

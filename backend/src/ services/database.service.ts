@@ -63,9 +63,9 @@ class DatabaseService {
         return [];
     }
 
-    public async createUser(email:string,password_hash: string,display_name:string,balance: number): Promise<any> {
+    public async createUser(email:string,password_hash: string,display_name:string, role:string,balance: number): Promise<any> {
         const query = `INSERT INTO users (email,password_hash,display_name,balanc, created_at) VALUES ($1,$2,$3,$4,$5, NOW())`;
-        await this.pool.query(query, [email, password_hash, display_name, balance]);
+        await this.pool.query(query, [email, password_hash, display_name, role,balance]);
 
     }
 
