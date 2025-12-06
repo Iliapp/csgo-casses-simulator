@@ -63,6 +63,12 @@ class DatabaseService {
         return [];
     }
 
+    public async createUser(email:string,password_hash: string,display_name:string,balance: number): Promise<any> {
+        const query = `INSERT INTO users (email,password_hash,display_name,balanc, created_at) VALUES ($1,$2,$3,$4,$5, NOW())`;
+        await this.pool.query(query, [email, password_hash, display_name, balance]);
+
+    }
+
     public async updateUserPassword(login: string, newHashedPassword: string): Promise<void> {
         const query = `UPDATE users SET password_hash = $1 WHERE display_name = $2 `;
         await this.pool.query(query, [newHashedPassword, login]);
