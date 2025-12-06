@@ -32,11 +32,16 @@ export class UserController {
         }
     }
 
-    async createUser(request: Request, response: Response): Promise<Response> {}
+    // @ts-ignore
+    async createUser(request: Request, response: Response): Promise<Response> {
+        try{
+            const { email, password, display_name,role,balance } = request.body;
+            await this.userService.createUser(email, password, display_name, role, balance);
+            return response.json({message: 'User created successfully.'});
+        } catch (error:any) {
+            response.status(400).json({error: error.message});
+        }
+    }
 
 }
 
-
-// soon must
-
-// to add smth
