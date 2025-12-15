@@ -43,5 +43,20 @@ export class UserController {
         }
     }
 
+    // @ts-ignore
+    async updateUserPassword(request: Request, response: Response): Promise<Response> {
+        try{
+            const email = request.params.email;
+            const {oldPassword, newPassword} = request.body;
+            await this.userService.updateUserPassword(email, oldPassword, newPassword);
+            return response.status(200).json({message: 'User password updated successfully.'});
+
+
+        } catch (error:any) {
+            return response.status(400).json({error: error.message});
+        }
+
+    }
+
 }
 
