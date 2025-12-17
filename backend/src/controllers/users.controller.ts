@@ -61,11 +61,13 @@ export class UserController {
     // @ts-ignore
     async UpdateUserDisplayName(request: Request, response: Response): Promise<Response> {
         try {
-            const
-                const
+            const email = request.params.email;
+            const newName = request.body.displayName;
+            await this.userService.UpdateUserDisplayName(email, newName);
+            return response.status(200).json({message: 'User updated successfully.'});
 
-            const
-
+        } catch (error:any) {
+            return response.status(400).json({error: error.message});
         }
     }
 
