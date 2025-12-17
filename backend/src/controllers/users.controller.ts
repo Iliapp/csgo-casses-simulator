@@ -61,6 +61,7 @@ export class UserController {
     // @ts-ignore
     async UpdateUserDisplayName(request: Request, response: Response): Promise<Response> {
         try {
+            const
 
         }
     }
