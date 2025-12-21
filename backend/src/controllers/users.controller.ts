@@ -84,5 +84,18 @@ export class UserController {
         }
     }
 
+    // @ts-ignore
+    async updateUserRole(request: Request, response: Response): Promise<Response> {
+        try {
+            const email = request.params.email;
+            const role = request.body.role;
+            await this.userService.updateUserRole(email, role);
+            return response.status(200).json({message: 'User updated successfully.'});
+        } catch (error:any) {
+            return response.status(400).json({error: error.message});
+        }
+
+    }
+
 }
 
