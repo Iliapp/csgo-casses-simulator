@@ -70,6 +70,19 @@ export class UserController {
             return response.status(400).json({error: error.message});
         }
     }
+    
+    // @ts-ignore
+    async updateUserBalance(request: Request, response: Response): Promise<Response> {
+        try {
+            const email = request.params.email;
+            const newBalance = request.body.balance
+            await this.userService.updateUserBalance(email, newBalance);
+            return response.status(200).json({message: 'User updated successfully.'});
+
+        } catch (error:any) {
+            return response.status(400).json({error: error.message});
+        }
+    }
 
 }
 
