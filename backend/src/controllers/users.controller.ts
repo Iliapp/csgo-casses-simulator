@@ -96,6 +96,15 @@ export class UserController {
         }
 
     }
+    async deleteUser(request: Request, response: Response): Promise<Response> {
+        try {
+            const email = request.params.email;
+            await this.userService.deleteUser(email);
+            return response.status(200).json({message: 'User deleted successfully.'});
+        } catch (error:any) {
+            return response.status(400).json({error: error.message});
+        }
+    }
 
 }
 
