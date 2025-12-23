@@ -8,6 +8,5 @@ const userController = new UserController(userService);
 
 router.get("/users", (req: Request, res: Response) => userController.getAllUsers(req, res));
 router.get("/users/:email", (req: Request, res: Response)=> userController.getUserByEmail(req,res))
-
-
+router.post("/users", (req: Request, res: Response) => userController.createUser(req,res))
 
