@@ -59,7 +59,7 @@ export class UserController {
     }
 
     // @ts-ignore
-    async UpdateUserDisplayName(request: Request, response: Response): Promise<Response> {
+    async updateUserDisplayName(request: Request, response: Response): Promise<Response> {
         try {
             const email = request.params.email;
             const newName = request.body.displayName;
