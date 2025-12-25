@@ -71,9 +71,3 @@ docker-compose down
 
 
 
-
-SOON MORE
-
-Create by Ilia 
-
-
